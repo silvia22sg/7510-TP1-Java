@@ -1,27 +1,44 @@
 package ar.uba.fi.tdd.rulogic.model;
 
-import static org.mockito.MockitoAnnotations.initMocks;
+import java.io.IOException;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
 
 public class KnowledgeBaseTest {
 
-	@InjectMocks
-	private KnowledgeBase knowledgeBase;
+	//@InjectMocks
+    KnowledgeBase knowledgeBase;
 
 	@Before
 	public void setUp() throws Exception {
-		initMocks(this);
+		knowledgeBase = new KnowledgeBase("src/main/resources/rules.db");
 	}
 
 	@Test
-	public void test() {
+	public void testFailAnswerFact() throws IOException {
+		Assert.assertFalse(this.knowledgeBase.answer("varon (luis)."));		
+		Assert.assertFalse(this.knowledgeBase.answer("mujer (miriam)."));
+	}
+	
+	@Test
+	public void testCorrectAnswerFact() throws IOException {
+		Assert.assertTrue(this.knowledgeBase.answer("mujer (cecilia)."));
+		Assert.assertTrue(this.knowledgeBase.answer("varon (nicolas)."));
+	}
+	
+	@Test
+	public void testFailAnswerRule() throws IOException {
+		Assert.assertFalse(this.knowledgeBase.answer("padre(mario, je)."));		
+		Assert.assertFalse(this.knowledgeBase.answer("hija(maria, roberto)."));
+	}
 
-	//	Assert.assertTrue(this.knowledgeBase.answer("varon (javier)."));
-
+	@Test
+	public void testCorrectAnswerRule() throws IOException {
+		Assert.assertTrue(this.knowledgeBase.answer("padre(juan, pepe)."));
+		Assert.assertTrue(this.knowledgeBase.answer("hijo(pepe, juan)."));
+		Assert.assertTrue(this.knowledgeBase.answer("tio(nicolas, alejandro, roberto)."));
 	}
 
 }

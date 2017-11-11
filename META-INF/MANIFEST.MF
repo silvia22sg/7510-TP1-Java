@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: 7510-TP1-Java
+Bundle-SymbolicName: 7510-TP1-Java
+Bundle-Version: 1.0.0.qualifier
+Export-Package: ar.uba.fi.tdd.rulogic,
+ ar.uba.fi.tdd.rulogic.model
