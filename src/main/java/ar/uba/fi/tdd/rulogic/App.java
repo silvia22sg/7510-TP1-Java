@@ -19,7 +19,6 @@ public class App
 	public static void main(String[] args) throws IOException {
 	
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		//PrintStream ps = new PrintStream(baos);
 		PrintStream old = System.out;
 		
 		KnowledgeBase kb = new KnowledgeBase("src/main/resources/rules.db");
